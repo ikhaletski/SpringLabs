@@ -2,8 +2,8 @@ package com.model;
 
 public class Rectangle {
 
-    private float width;
-    private float length;
+    final private float width;
+    final private float length;
 
     public Rectangle(float width, float length) {
         this.width = width;

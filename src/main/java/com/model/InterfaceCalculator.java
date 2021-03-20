@@ -1,6 +1,6 @@
 package com.model;
 
-public interface Calculator {
+public interface InterfaceCalculator {
 
     ResultsOfCalculations calculate(Rectangle rectangle);
 }

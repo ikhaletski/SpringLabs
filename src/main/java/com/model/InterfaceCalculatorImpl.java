@@ -1,6 +1,6 @@
 package com.model;
 
-public class RectangleCalculator implements Calculator{
+public class InterfaceCalculatorImpl implements InterfaceCalculator {
 
     public ResultsOfCalculations calculate(Rectangle rectangle) {
         ResultsOfCalculations resultsOfCalculations = new ResultsOfCalculations(

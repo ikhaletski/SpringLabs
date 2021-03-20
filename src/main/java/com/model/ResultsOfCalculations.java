@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ResultsOfCalculations {
 
     @JsonProperty
-    private float square;
+    final private float square;
     @JsonProperty
-    private float perimeter;
+    final private float perimeter;
 
     public ResultsOfCalculations(float square, float perimeter) {
         this.square = square;
