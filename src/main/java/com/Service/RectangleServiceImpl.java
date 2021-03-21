@@ -1,6 +1,11 @@
-package com.model;
+package com.Service;
 
-public class InterfaceCalculatorImpl implements InterfaceCalculator {
+import com.model.Rectangle;
+import com.model.ResultsOfCalculations;
+import org.springframework.stereotype.Service;
+
+@Service
+public class RectangleServiceImpl implements RectangleService {
 
     public ResultsOfCalculations calculate(Rectangle rectangle) {
         ResultsOfCalculations resultsOfCalculations = new ResultsOfCalculations(
