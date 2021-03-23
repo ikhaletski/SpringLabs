@@ -1,4 +1,4 @@
-package com.Service;
+package com.service;
 
 import com.model.Rectangle;
 import com.model.ResultsOfCalculations;

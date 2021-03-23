@@ -2,6 +2,8 @@ package com.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class ResultsOfCalculations {
 
     @JsonProperty
@@ -12,6 +14,14 @@ public class ResultsOfCalculations {
     public ResultsOfCalculations(float square, float perimeter) {
         this.square = square;
         this.perimeter = perimeter;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResultsOfCalculations that = (ResultsOfCalculations) o;
+        return Float.compare(that.square, square) == 0 && Float.compare(that.perimeter, perimeter) == 0;
     }
 
     public float getSquare() {

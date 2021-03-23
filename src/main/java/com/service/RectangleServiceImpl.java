@@ -1,7 +1,9 @@
-package com.Service;
+package com.service;
 
 import com.model.Rectangle;
 import com.model.ResultsOfCalculations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +14,8 @@ public class RectangleServiceImpl implements RectangleService {
                 rectangle.getLength() * rectangle.getWidth(),
                 (rectangle.getLength() + rectangle.getWidth()) * 2
         );
+        Logger logger = LoggerFactory.getLogger(RectangleServiceImpl.class);
+        logger.info("Successfully calculated rectangle square and perimeter");
         return resultsOfCalculations;
     }
 }
