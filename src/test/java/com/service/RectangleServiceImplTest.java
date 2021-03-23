@@ -1,21 +1,32 @@
 package com.service;
 
-import com.model.Rectangle;
-import com.model.ResultsOfCalculations;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 class RectangleServiceImplTest {
 
-    private RectangleServiceImpl rectangleService = new RectangleServiceImpl();
+    @Autowired
+    private MockMvc mockMvc;
+
 
     @Test
-    void calculate() {
-        Rectangle rectangle = new Rectangle(12, 12);
-        ResultsOfCalculations resultsOfCalculations = new ResultsOfCalculations(144, 48);
-        Assert.assertEquals(resultsOfCalculations, rectangleService.calculate(rectangle));
+    void test() throws Exception {
+        this.mockMvc.perform(get("/Calculate?length=11&width=12"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json("{square:132.0,perimeter:46.0}"));
     }
 }

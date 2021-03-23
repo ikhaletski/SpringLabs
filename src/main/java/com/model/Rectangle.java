@@ -1,7 +1,5 @@
 package com.model;
 
-import javax.validation.constraints.Min;
-
 public class Rectangle {
 
     final private float width;

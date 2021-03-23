@@ -18,7 +18,8 @@ import javax.validation.constraints.Min;
 @RestController
 public class RectangleParametersController {
 
-    private RectangleServiceImpl service;
+    private final RectangleServiceImpl service;
+    private final Logger logger = LoggerFactory.getLogger(RectangleParametersController.class);
 
     @Autowired
     public RectangleParametersController(RectangleServiceImpl service) {
@@ -27,7 +28,9 @@ public class RectangleParametersController {
 
     @GetMapping("/Calculate")
     public ResultsOfCalculations getParameters(@RequestParam @Min(0) float length,
-                                               @RequestParam @Min(0) float width) throws ConstraintViolationException{
+                                               @RequestParam @Min(0) float width) throws ConstraintViolationException
+
+    {
 
         return service.calculate(new Rectangle(width, length));
     }
@@ -35,7 +38,7 @@ public class RectangleParametersController {
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
-        Logger logger = LoggerFactory.getLogger(RectangleParametersController.class);
+
         logger.warn(e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
