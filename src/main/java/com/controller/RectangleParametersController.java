@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.service.RectangleService;
 import com.service.RectangleServiceImpl;
 import com.model.Rectangle;
 import com.model.ResultsOfCalculations;
@@ -18,7 +19,7 @@ import javax.validation.constraints.Min;
 @RestController
 public class RectangleParametersController {
 
-    private final RectangleServiceImpl service;
+    private final RectangleService service;
     private final Logger logger = LoggerFactory.getLogger(RectangleParametersController.class);
 
     @Autowired
@@ -28,9 +29,7 @@ public class RectangleParametersController {
 
     @GetMapping("/Calculate")
     public ResultsOfCalculations getParameters(@RequestParam @Min(0) float length,
-                                               @RequestParam @Min(0) float width) throws ConstraintViolationException
-
-    {
+                                               @RequestParam @Min(0) float width) throws ConstraintViolationException {
 
         return service.calculate(new Rectangle(width, length));
     }
