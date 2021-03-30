@@ -1,7 +1,7 @@
 package com.service;
 
-import com.model.Rectangle;
-import com.model.ResultsOfCalculations;
+import com.domain.Rectangle;
+import com.domain.ResultsOfCalculations;
 
 public interface RectangleService {
 

@@ -1,9 +1,10 @@
 package com.controller;
 
+import com.domain.Cash;
 import com.service.RectangleService;
 import com.service.RectangleServiceImpl;
-import com.model.Rectangle;
-import com.model.ResultsOfCalculations;
+import com.domain.Rectangle;
+import com.domain.ResultsOfCalculations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,24 @@ public class RectangleParametersController {
 
     private final RectangleService service;
     private final Logger logger = LoggerFactory.getLogger(RectangleParametersController.class);
+    private final Cash cash;
 
     @Autowired
-    public RectangleParametersController(RectangleServiceImpl service) {
+    public RectangleParametersController(RectangleService service, Cash cash) {
         this.service = service;
+        this.cash = cash;
     }
 
     @GetMapping("/Calculate")
     public ResultsOfCalculations getParameters(@RequestParam @Min(0) float length,
                                                @RequestParam @Min(0) float width) throws ConstraintViolationException {
-
-        return service.calculate(new Rectangle(width, length));
+        Rectangle rectangle = new Rectangle(width, length);
+        if (cash.isExist(rectangle)) {
+            return cash.getResultOfCalculations(rectangle);
+        }
+        ResultsOfCalculations resultsOfCalculations = service.calculate(rectangle);
+        cash.addRectangleToCash(rectangle, resultsOfCalculations);
+        return resultsOfCalculations;
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
