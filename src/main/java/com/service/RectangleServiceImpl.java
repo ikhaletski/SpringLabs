@@ -2,11 +2,13 @@ package com.service;
 
 import com.domain.Rectangle;
 import com.domain.ResultsOfCalculations;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class RectangleServiceImpl implements RectangleService {
 
     private final Logger logger = LoggerFactory.getLogger(RectangleServiceImpl.class);
